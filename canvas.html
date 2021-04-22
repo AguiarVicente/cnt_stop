@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #canvas {
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        #source {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Canvas Crash Course</h1>
+
+    <canvas id="canvas" width="600" height="400"></canvas>
+
+    <img src="https://i.ibb.co/HHBFJdH/char.png" alt="" id="source" />
+
+
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        
+        const pos = {
+            x: 30,
+            y: 20,
+            dx: 100,
+            dy: 100
+        }
+
+        
+        function circle(x, y, r){
+            ctx.beginPath()
+            ctx.arc(x, y, r, 0, Math.PI * 2, true)
+            ctx.fill()
+            ctx.closePath()
+        }
+        function clear(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+        }
+
+        setInterval(()=>{
+            position = {
+                x : pos.x,
+                y : pos.y
+            }
+            pos.x += 5
+            pos.y += 5
+            if(pos.x > 100){
+                return
+            }
+            clear()
+            circle(pos.x, pos.y, 15)
+            // console.log(pos.x);
+            console.log(position);
+        }, 100)
+
+    </script>
+</body>
+
+</html>
